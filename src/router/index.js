@@ -7,10 +7,7 @@ import DeleteCheck from '../views/DeleteCheck.vue'
 import Create from '../views/Create.vue'
 import CreateCheck from '../views/CreateCheck.vue'
 
-
-
 //views 1page  
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -21,17 +18,20 @@ const router = createRouter({
     ,
     {
       path: '/users',
+      name: 'EmployeeList',
       component: EmployeeList
     }
     ,
     {
       path: '/update',
+      name: 'update',
       component: Update
     }
     ,
     {
-      path: '/update_comfirm',
-      component: UpdateCheck
+      path : '/update_comfirm',
+      name : 'UpdateCheck', 
+      component : UpdateCheck
     }
     ,
     {
@@ -41,15 +41,19 @@ const router = createRouter({
     ,
     {
       path: '/create_comfirm',
+      name:  'CreateCheck',
+      props: true,
       component: CreateCheck
     }
     ,
     {
-      path: '/delete/:id',
+      path: '/delete/',
+      name: 'DeleteCheck',
+      props: true,
       component: DeleteCheck
     }
 
   ]
-})
+});
 
 export default router

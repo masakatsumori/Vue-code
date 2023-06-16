@@ -4,58 +4,40 @@
     <head>
   <title>UPDATEUSER</title>
 </head>
-<form id="updateForm">
-        <label for="newName">新しい名前:</label><br>
-        <input type="text" id="newName" name="newName"><br>
-        <label for="oldName">ふるい名前:</label><br>
-        <input type="text" id="oldName" name="oldName"><br>
-        <input type="submit" value="送信">
+<body>
+  
+  <section>
+    <h1>研修生を変更する</h1>
+    <p>ID: {{selectedEmployee.id}}</p>
+      <form>
+      <input type="text" v-model="selectedEmployee.name" size="30" maxlength="30" placeholder="名前">
+      <input type="text" v-model="selectedEmployee.email" size="30" maxlength="30" placeholder="Email">
     </form>
+  </section>
+
+      <router-link 
+      @click="() => selectEmployee(selectedEmployee.id, selectedEmployee.name, selectedEmployee.email)" :to="{ name: 'UpdateCheck' }">
+  <button>確認</button>
+</router-link>
 
 
+  <router-link to='users'>
+      <button>キャンセル</button>
+    </router-link>
+</body>
 
   </div>
-
 </template>
 
 <script setup>
 
-// import { ref } from 'vue';
-// const url = 'http://localhost:8080/user/update';
-// let newName = '';
-// let oldName = '';
+import { useStore } from '@/stores/counter';
+const { selectedEmployee , selectEmployee} = useStore();
+const props = defineProps({
+  id: String
+});
 
-// const updateFetch = async () => {
-//   try {
-//     const response = await fetch(url, {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify({
-//         "newName": newName,
-//         "oldName": oldName
-//       })
-//     });
 
-//     if(!response.ok) {
-//       console.log('エラー!');
-//     } else {
-//       console.log('成功!');
-//       const data = await response.json();
-//       console.log(data);
-//     }
-
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-// updateFetch();
-
-  
-
-  
 </script>
 
 <style scoped>

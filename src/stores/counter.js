@@ -1,12 +1,21 @@
-import { ref, computed } from 'vue'
-import { defineStore } from 'pinia'
+import { defineStore } from 'pinia';
 
-export const useCounterStore = defineStore('counter', () => {
-  const count = ref(0)
-  const doubleCount = computed(() => count.value * 2)
-  function increment() {
-    count.value++
-  }
+export const useStore = defineStore({
+  id: 'main',
+  state: () => ({
+    selectedEmployee: {
+      id: null,
+      name: null,
+      email: null,
+    },
+  }),
+  actions: {
+    selectEmployee(id, name, email) {
+      this.selectedEmployee.id = id;
+      this.selectedEmployee.name = name;
+      this.selectedEmployee.email = email;
 
-  return { count, doubleCount, increment }
-})
+      console.log('selectedEmployee after selectEmployee action:', this.selectedEmployee);
+    },
+  },
+});
